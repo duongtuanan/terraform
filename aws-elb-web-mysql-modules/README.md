@@ -5,17 +5,17 @@ This example code will output the information of load balancer and database inst
 - global
   - s3-prod-state.tf
 - prod
-      main.tf
-      outputs.tf
+  - main.tf
+  - outputs.tf
 - modules
-     webserver-cluster/
-------------main.tf
-------------outputs.tf
-------------variables.tf
---------mysql/
-------------main.tf
-------------outputs.tf
-------------variables.tf
+  - webserver-cluster/
+    - main.tf
+    - outputs.tf
+    - variables.tf
+  - mysql/
+    - main.tf
+    - outputs.tf
+    - variables.tf
 
 ## CREATE S3 BUCKET AND STORE TERRAFORM STATE ON S3 
 
