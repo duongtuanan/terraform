@@ -1,13 +1,13 @@
 This example code will create a mysql instance, a cluster of web servers and can be access via load balancer.
 This example code will output the information of load balancer and database instance.
 
-aws-elb-web-mysql-modules/
-  global
-      s3-prod-state.tf
-  prod
+## FILE LAYOUT 
+- global
+ - -s3-prod-state.tf
+- prod
       main.tf
       outputs.tf
-  modules
+- modules
      webserver-cluster/
 ------------main.tf
 ------------outputs.tf
