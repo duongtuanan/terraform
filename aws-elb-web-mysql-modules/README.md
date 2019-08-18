@@ -3,7 +3,7 @@ This example code will output the information of load balancer and database inst
 
 ## FILE LAYOUT 
 - global
- - -s3-prod-state.tf
+  - s3-prod-state.tf
 - prod
       main.tf
       outputs.tf
