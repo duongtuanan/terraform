@@ -9,13 +9,13 @@
 
 terraform {
   required_version = ">= 0.12"
-  backend "s3" {
-    bucket         = "s3-prod-state-shared-2019"
-    key            = "global/s3/terraform-prod.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "terraform-up-and-running-locks"
-    encrypt        = true
-  }
+ #backend "s3" {
+ #   bucket         = "s3-prod-state-shared-2019"
+ #   key            = "global/s3/terraform-prod.tfstate"
+ #   region         = "us-east-1"
+ #   dynamodb_table = "terraform-up-and-running-locks"
+ #   encrypt        = true
+ #}
 }
 
 # ------------------------------------------------------------------------------
@@ -25,6 +25,15 @@ terraform {
 provider "aws" {
   profile    = "default"
   region     = "us-east-1"
+}
+
+# ------------------------------------------------------------------------------
+# DEPLOY THE VPC, SUBNETS, GATEWAY
+# ------------------------------------------------------------------------------
+module "network" {
+  source = "../modules/network"
+  cidr_vpc 		= "10.1.0.0/16"
+  cidr_subnet 	= "10.1"
 }
 
 # ------------------------------------------------------------------------------
@@ -38,10 +47,12 @@ module "webserver_cluster" {
   instance_type = "t2.micro"
   min_size      = 1
   max_size      = 2
-  ami			= "ami-07d0cf3af28718ef8"
+  ami			= "ami-0c322300a1dd5dc79"
   ec2-key		= "ec2"
-  server_port	= 8080
+  server_port	= 80
   elb_port		= 80
+  vpc_id		= module.network.vpc_id
+  vpc_subnets	= module.network.vpc_subnets
   
 }
 
