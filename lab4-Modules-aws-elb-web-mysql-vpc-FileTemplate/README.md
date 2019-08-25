@@ -1,7 +1,7 @@
 The following example code: 
 - Create vpc, internet gateway, subnets, security group...
 - Create a mysql instance. 
-- Create a cluster of web servers (using /modules/webserver-cluster/install_httpd.sh file for provisioning) and can be access via load balancer.
+- Create a cluster of web servers (using /modules/webserver-cluster/install_httpd.sh file for provisioning), and can be access via load balancer.
 - Output the information of load balancer and database instance.
 
 ## FILE LAYOUT 
