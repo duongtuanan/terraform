@@ -1,5 +1,6 @@
-This example code will create a mysql instance, a cluster of web servers and can be access via load balancer.
-This example code will output the information of load balancer and database instance.
+This example code will 
+ - Create a mysql instance, a cluster of web servers and can be access via load balancer.
+ - Output the information of load balancer and database instance.
 
 ## FILE LAYOUT 
 - global
