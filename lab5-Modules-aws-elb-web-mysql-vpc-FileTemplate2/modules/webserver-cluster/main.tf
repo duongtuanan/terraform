@@ -14,6 +14,9 @@ terraform {
 
 data "aws_availability_zones" "all" {}
 
+# Script (provision.sh) written for our EC2 web server instances 
+# to fetch a build of the Spring Boot S3 Example project from Amazon S3 storage
+
 data "template_file" "provision" {
   
   template 				= "${file("${path.module}/provision.sh")}"
