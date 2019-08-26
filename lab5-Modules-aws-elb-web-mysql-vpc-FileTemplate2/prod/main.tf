@@ -9,13 +9,15 @@
 
 terraform {
   required_version = ">= 0.12"
- #backend "s3" {
- #   bucket         = "s3-prod-state-shared-2019"
- #   key            = "global/s3/terraform-prod.tfstate"
- #   region         = "us-east-1"
- #   dynamodb_table = "terraform-up-and-running-locks"
- #   encrypt        = true
- #}
+  
+  #Remove if you want to use remote state
+  #backend "s3" {
+  #   bucket         = "s3-prod-state-shared-2019"
+  #   key            = "global/s3/terraform-prod.tfstate"
+  #   region         = "us-east-1"
+  #   dynamodb_table = "terraform-up-and-running-locks"
+  #   encrypt        = true
+  #}
 }
 
 # ------------------------------------------------------------------------------
@@ -23,17 +25,17 @@ terraform {
 # ------------------------------------------------------------------------------
 
 provider "aws" {
-  profile    = "default"
-  region     = "us-east-1"
+  profile    		= "default"
+  region     		= "us-east-1"
 }
 
 # ------------------------------------------------------------------------------
 # DEPLOY THE VPC, SUBNETS, GATEWAY
 # ------------------------------------------------------------------------------
 module "network" {
-  source = "../modules/network"
-  cidr_vpc 		= "10.1.0.0/16"
-  cidr_subnet 	= "10.1"
+  source 			= "../modules/network"
+  cidr_vpc 			= "10.1.0.0/16"
+  cidr_subnet 		= "10.1"
 }
 
 # ------------------------------------------------------------------------------
@@ -43,17 +45,18 @@ module "network" {
 module "webserver_cluster" {
   source = "../modules/webserver-cluster"
 
-  cluster_name  = "webservers-ps"
-  instance_type = "t2.micro"
-  min_size      = 1
-  max_size      = 2
-  ami			= "ami-0b898040803850657"
-  ec2-key		= "ec2"
-  server_port	= 80
-  elb_port		= 80
-  vpc_id		= module.network.vpc_id
-  vpc_subnets	= module.network.vpc_subnets
-  
+  cluster_name  	= "webservers-ps"
+  instance_type 	= "t2.micro"
+  min_size      	= 1
+  max_size     		= 2
+  ami				= "ami-0b898040803850657"
+  ec2-key			= "ec2"
+  server_port		= 80
+  elb_port			= 80
+  vpc_id			= module.network.vpc_id
+  vpc_subnets		= module.network.vpc_subnets
+   
+  # Only for web server provisiong
   db_address		= module.mysql.db_address
   db_name  			= "mysqltesting123"
   db_password		= "Abc.123Anduong"

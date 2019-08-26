@@ -54,7 +54,7 @@ variable "vpc_subnets" {
 
 
 # ---------------------------------------------------------------------------------------------------------------------
-# PARAMETERS FOR WEB SERVER PROVISIONING
+# PARAMETERS FOR WEB SERVER PROVISIONING ONLY
 # --------------------------------------------------------------------------------------------------------------------- 
 variable "s3_bucket_name" {}
 variable "s3_region" {}
