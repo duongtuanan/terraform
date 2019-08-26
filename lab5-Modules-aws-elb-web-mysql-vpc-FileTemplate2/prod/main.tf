@@ -56,7 +56,7 @@ module "webserver_cluster" {
   vpc_id			= module.network.vpc_id
   vpc_subnets		= module.network.vpc_subnets
    
-  # Only for web server provisiong
+  # TESTING ONLY - For web server provisioning
   db_address		= module.mysql.db_address
   db_name  			= "mysqltesting123"
   db_password		= "Abc.123Anduong"
